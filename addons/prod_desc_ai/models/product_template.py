@@ -32,7 +32,8 @@ class ProductTemplate(models.Model):
                 "type": "text",
                 "text": f"Describe this product in {desc_tone} tone. Name of the product is {product.name}. "
                         f"The description should be in language with locale code {desc_lang} and should be "
-                        f"suitable for e-commerce. Do not use lists and bullet points. Do not style the text."
+                        f"suitable for e-commerce. Do not use lists and bullet points. Do not style the text, "
+                        f"except emoticons when you want them."
             },
             {
               "type": "image_url",
