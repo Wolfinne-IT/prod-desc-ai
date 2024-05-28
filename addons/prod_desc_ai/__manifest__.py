@@ -42,6 +42,14 @@
     'price': 149.99,
     'currency': 'EUR',
     'depends': ['website_sale'],
+    'images': [
+        'static/description/thumbnail.png',
+    ],
+    'external_dependencies': {
+        'python': [
+            'openai',
+        ],
+    },
     'data': [
         # 'views/product_template_views.xml',
     ],
