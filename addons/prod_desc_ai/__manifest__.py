@@ -1,11 +1,11 @@
 {
     'name': 'Product AutoDescriber AI',
-    'version': '1.0.0',
-    'license': 'OPL-1',
+    'version': '1.0.1',
+    'license': 'LGPL-3',
     'category': 'Sales/Products',
     'summary': 'Automatically generate product descriptions using AI based on product images.',
     "description": """
-        Product Descriptor AI leverages the power of OpenAI's ChatGPT to automatically generate unique and engaging descriptions for your products based on their images. This module is perfect for e-commerce businesses looking to enhance their product listings with high-quality AI-generated content.
+        Product AutoDescriber AI leverages the power of OpenAI's ChatGPT to automatically generate unique and engaging descriptions for your products based on their images. This module is perfect for e-commerce businesses looking to enhance their product listings with high-quality AI-generated content.
         
         **Key Features:**
         - Automatically generates product descriptions using AI.
@@ -30,7 +30,7 @@
         **Security Note:**
         Keep your API key confidential to prevent unauthorized usage, which could lead to unexpected charges or data breaches.
         
-        With Product Descriptor AI, enrich your product presentations and engage your customers like never before. Enhance your online shop's appeal and functionality with cutting-edge AI technology.
+        With Product AutoDescriber AI, enrich your product presentations and engage your customers like never before. Enhance your online shop's appeal and functionality with cutting-edge AI technology.
         
         This module currently supports Odoo 17. For earlier versions, please contact us for compatibility information.
     """,
@@ -39,8 +39,6 @@
     'maintainer': 'Bojan Nisevic',
     'website': 'https://boyan.pro',
     'support': 'bojan@wolfinne.com',
-    'price': 149.99,
-    'currency': 'EUR',
     'depends': ['website_sale'],
     'images': [
         'static/description/thumbnail.png',
@@ -51,7 +49,7 @@
         ],
     },
     'data': [
-        # 'views/product_template_views.xml',
+        'views/product_views.xml',
     ],
     'assets': {
         'web_editor.backend_assets_wysiwyg': [

@@ -1,7 +1,7 @@
 import logging
 from openai import OpenAI, APIError
 
-from odoo import models
+from odoo import _, models, fields, api
 from odoo.exceptions import UserError
 from odoo.tools import image_data_uri
 
@@ -16,13 +16,13 @@ class ProductTemplate(models.Model):
 
         product = self.browse(product_id)
         if not product.image_1920:
-            _logger.error('Product image is not available.')
-            raise UserError('Product image is not available.')
+            _logger.error(_('Product image is not available.'))
+            raise UserError(_('Product image is not available.'))
 
         api_key = self.env['ir.config_parameter'].get_param('gpt_opd_api_key')
         if not api_key:
-            _logger.error('API key is not set.')
-            raise UserError('API key is not set.')
+            _logger.error(_('API key is not set.'))
+            raise UserError(_('API key is not set.'))
 
         model = self.env['ir.config_parameter'].get_param('gpt_opd_model', default='gpt-4o')
         max_tokens = self.env['ir.config_parameter'].get_param('gpt_opd_max_tokens', default=300)
@@ -33,7 +33,7 @@ class ProductTemplate(models.Model):
                 "text": f"Describe this product in {desc_tone} tone. Name of the product is {product.name}. "
                         f"The description should be in language with locale code {desc_lang} and should be "
                         f"suitable for e-commerce. Do not use lists and bullet points. Do not style the text, "
-                        f"except emoticons when you want them."
+                        f"except emoticons when those are suitable and convenient for the use."
             },
             {
               "type": "image_url",
@@ -63,3 +63,12 @@ class ProductTemplate(models.Model):
         product.write({'description_ecommerce': response.choices[0].message.content})
 
         return response.choices[0].message.content
+
+    def button_update_description(self):
+        desc_tone = self._context.get('desc_tone')
+        if not desc_tone:
+            raise UserError(_('Description tone is not set.'))
+        lang = self.env.context.get('lang')
+
+        for record in self:
+            record.update_product_desc_ai(record.id, desc_tone, lang)

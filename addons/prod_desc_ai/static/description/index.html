@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Product Descriptor AI</title>
+    <title>Product AutoDescriber AI</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         .container {
@@ -16,31 +16,31 @@
 <body>
 
 <div class="container">
-    <h1>Product Descriptor AI</h1>
+    <h2>Product AutoDescriber AI</h2>
     <p>
-        Product Descriptor AI leverages the power of OpenAI's ChatGPT to automatically generate unique and engaging descriptions for your products based on their images. This module is perfect for e-commerce businesses looking to enhance their product listings with high-quality AI-generated content.
+        Product AutoDescriber AI leverages the power of OpenAI's ChatGPT to automatically generate unique and engaging descriptions for your products based on their images. This module is perfect for e-commerce businesses looking to enhance their product listings with high-quality AI-generated content.
     </p>
 
-    <h2>Features</h2>
+    <h3>Features</h3>
     <ul>
         <li>Automatically generates product descriptions using AI.</li>
         <li>Supports multiple tones and languages to tailor the content to your brand's voice.</li>
         <li>Integrates seamlessly with your existing product templates in Odoo.</li>
     </ul>
 
-    <h2>Requirements</h2>
+    <h3>Requirements</h3>
     <p>
         To use this module, an <strong>OpenAI API key</strong> is required. This key allows the module to interact with OpenAI's services to generate descriptions based on the images of your products.
     </p>
 
-    <h3>Getting an OpenAI API Key</h3>
+    <h4>Getting an OpenAI API Key</h4>
     <ol>
         <li>Visit OpenAI’s official website and sign up for an account if you do not have one.</li>
         <li>Navigate to the API section and apply for access to the API. Depending on your usage, you may need to provide details about your use case.</li>
         <li>Once approved, you will receive an API key. This key is essential for the module to function and should be entered in the Odoo configuration panel under the settings specified by this module.</li>
     </ol>
 
-    <h3>Configuring the API Key in Odoo</h3>
+    <h4>Configuring the API Key in Odoo</h4>
     <p>
         After obtaining the API key, go to Odoo’s <strong>Settings → Parameters → System Parameters</strong> and add a new parameter:
     </p>
@@ -54,23 +54,33 @@
 
     <div class="screenshot">
         <h3>Module in Action</h3>
-        <img src="screenshot1.png" class="img-fluid" alt="Product Descriptor AI Screenshot 1"><br>
-        <img src="screenshot2.png" class="img-fluid" alt="Product Descriptor AI Screenshot 2">
-        <p>Product Descriptor AI seamlessly integrated into the Odoo product page.</p>
+        <p>Product AutoDescriber AI seamlessly integrated into the Odoo product page.</p>
+        <img src="screenshot1.png" class="img-fluid" alt="Product AutoDescriber AI Screenshot 1"><br>
+        <img src="screenshot2.png" class="img-fluid" alt="Product AutoDescriber AI Screenshot 2">
     </div>
 
     <div class="screenshot">
         <h3>AI-generated Description</h3>
-        <img src="screenshot3.png" class="img-fluid" alt="AI-generated Description Screenshot">
         <p>Example of an AI-generated product description.</p>
+        <img src="screenshot3.png" class="img-fluid" alt="AI-generated Description Screenshot">
     </div>
 
     <div class="screenshot">
-        <h3>Failed API Key</h3>
-        <img src="screenshot5.png" class="img-fluid" alt="Failed API Key">
+        <h3>AI-generated Description in Product Template Form</h3>
+        <p>
+            The addon also extends Sale tab on the Product Template Form view.
+            You can generate the description for the product by clicking on one of the buttons depending on
+            the description tone which you desire.
+        </p>
+        <img src="screenshot7.png" class="img-fluid" alt="AI-generated Description Screenshot Form">
     </div>
 
-    <h2>Support</h2>
+    <div class="screenshot">
+        <h4>Failed API Key</h4>
+        <img src="screenshot5.png" class="img-fluid" alt="Failed API Key">
+    </div>
+    <br>
+    <h4>Support</h4>
     <p>
         If you encounter any issues or have questions about using this module, please contact us at <a href="mailto:bojan@wolfinne.com">bojan@wolfinne.com</a>.
     </p>

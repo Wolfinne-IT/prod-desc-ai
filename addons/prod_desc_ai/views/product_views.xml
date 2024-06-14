@@ -1,0 +1,41 @@
+<odoo>
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="website_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="website_ribbon_id" position="after">
+                <field name="description_ecommerce" widget="html"/>
+                <label for="description_ecommerce" string="Generate Description"/>
+                <div class="content-group" name="desc_ai_button_update">
+                    <div class="d-flex">
+                        <button name="button_update_description"
+                                type="object"
+                                string="Cute"
+                                class="oe_highlight"
+                                style="margin-right: 10px;"
+                                context="{'desc_tone': 'cute'}"/>
+                        <div style="width: 10px;"> </div>
+                        <button name="button_update_description"
+                                type="object"
+                                string="Funny"
+                                class="oe_highlight"
+                                context="{'desc_tone': 'funny'}"/>
+                        <div style="width: 10px;"> </div>
+                        <button name="button_update_description"
+                            type="object"
+                            string="Feminine"
+                            class="oe_highlight"
+                            context="{'desc_tone': 'feminine'}"/>
+                        <div style="width: 10px;"> </div>
+                        <button name="button_update_description"
+                                type="object"
+                                string="Official"
+                                class="oe_highlight"
+                                context="{'desc_tone': 'official'}"/>
+                    </div>
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>
