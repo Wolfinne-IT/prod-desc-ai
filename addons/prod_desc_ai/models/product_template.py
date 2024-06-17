@@ -11,13 +11,16 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    def update_product_desc_ai(self, product_id, desc_tone, desc_lang='en'):
+    def update_product_desc_ai(self, product_id, desc_tone, desc_lang='en', server_action=False):
         _logger.info(f'Update product (ID: {product_id}) description by AI in {desc_tone} tone.')
 
         product = self.browse(product_id)
         if not product.image_1920:
             _logger.error(_('Product image is not available.'))
-            raise UserError(_('Product image is not available.'))
+            if server_action:
+                return False
+            else:
+                raise UserError(_('Product image is not available.'))
 
         api_key = self.env['ir.config_parameter'].get_param('gpt_opd_api_key')
         if not api_key:
@@ -72,3 +75,8 @@ class ProductTemplate(models.Model):
 
         for record in self:
             record.update_product_desc_ai(record.id, desc_tone, lang)
+
+    def update_all_description_ecommerce(self, tone):
+        lang = self.env.context.get('lang')
+        for record in self.env['product.template'].search([]):
+            record.update_product_desc_ai(record.id, tone, lang, server_action=True)
