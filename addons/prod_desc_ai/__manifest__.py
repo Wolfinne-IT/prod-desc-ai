@@ -37,7 +37,7 @@
     'sequence': 10,
     'author': 'Bojan Nisevic',
     'maintainer': 'Bojan Nisevic',
-    'website': 'https://boyan.pro',
+    'website': 'https://wolfinne.com',
     'support': 'bojan@wolfinne.com',
     'depends': ['website_sale'],
     'images': [
