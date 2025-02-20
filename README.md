@@ -1,1 +1,0 @@
-# prod-desc-gpt
