@@ -35,7 +35,7 @@
         This module currently supports Odoo 17. For earlier versions, please contact us for compatibility information.
     """,
     'sequence': 10,
-    'author': 'Bojan Nisevic',
+    'author': 'Wolfinne IT',
     'maintainer': 'Bojan Nisevic',
     'website': 'https://wolfinne.com',
     'support': 'bojan@wolfinne.com',
