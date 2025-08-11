@@ -1,4 +1,4 @@
-FROM odoo:18
+FROM odoo:18.0-20250807
 USER root
 RUN apt-get update && \
     apt-get install -y python3-venv && \
