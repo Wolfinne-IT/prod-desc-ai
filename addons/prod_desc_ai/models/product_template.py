@@ -3,7 +3,7 @@ from openai import OpenAI, APIError
 
 from odoo import _, models, fields, api
 from odoo.exceptions import UserError
-from odoo.tools import image_data_uri
+from odoo.tools.image import image_data_uri
 
 _logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ class ProductTemplate(models.Model):
             raise UserError(_('API key is not set.'))
 
         model = self.env['ir.config_parameter'].get_param('gpt_opd_model', default='gpt-4o')
-        max_tokens = self.env['ir.config_parameter'].get_param('gpt_opd_max_tokens', default=300)
+        max_tokens = int(self.env['ir.config_parameter'].get_param('gpt_opd_max_tokens', default=300))
         image_url = image_data_uri(product.image_1920)
         content = [
             {

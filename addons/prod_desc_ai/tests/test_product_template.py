@@ -2,6 +2,7 @@ import logging
 from unittest.mock import patch, Mock
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError
+import base64
 
 _logger = logging.getLogger(__name__)
 
@@ -12,7 +13,7 @@ class TestProductTemplate(TransactionCase):
         self.product_template = self.env['product.template']
         self.product = self.product_template.create({
             'name': 'Test Product',
-            'image_1920': 'some_image_data',  # Use actual image data in a real test
+            'image_1920': base64.b64encode(b'fake_image'),  # Use actual image data in a real test
         })
 
         # Set necessary config parameters
