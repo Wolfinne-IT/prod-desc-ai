@@ -32,7 +32,7 @@
         
         With Product AutoDescriber AI, enrich your product presentations and engage your customers like never before. Enhance your online shop's appeal and functionality with cutting-edge AI technology.
         
-        This module currently supports Odoo 17. For earlier versions, please contact us for compatibility information.
+        This module currently supports Odoo 16. For earlier versions, please contact us for compatibility information.
     """,
     'sequence': 10,
     'author': 'Bojan Nisevic',

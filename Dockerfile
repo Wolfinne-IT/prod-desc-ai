@@ -1,4 +1,4 @@
-FROM odoo:17
+FROM odoo:16
 USER root
 COPY ./requirements.txt .
 RUN pip3 install -r requirements.txt

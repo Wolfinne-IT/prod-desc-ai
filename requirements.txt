@@ -1,2 +1,5 @@
-ipdb
-openai
+openai>=1.40,<2
+ipdb>=0.13
+Werkzeug==2.3.7
+Jinja2==3.1.2
+MarkupSafe==2.1.3
