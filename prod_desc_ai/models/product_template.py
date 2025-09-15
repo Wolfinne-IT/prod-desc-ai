@@ -1,5 +1,6 @@
 import logging
 from openai import OpenAI, APIError
+
 from odoo import _, models, fields, api
 from odoo.exceptions import UserError
 from odoo.tools import image_data_uri
@@ -14,7 +15,6 @@ class ProductTemplate(models.Model):
         _logger.info(f'Update product (ID: {product_id}) description by AI in {desc_tone} tone.')
 
         product = self.browse(product_id)
-
         if not product.image_1920:
             _logger.error(_('Product image is not available.'))
             if server_action:
@@ -28,34 +28,33 @@ class ProductTemplate(models.Model):
             raise UserError(_('API key is not set.'))
 
         model = self.env['ir.config_parameter'].get_param('gpt_opd_model', default='gpt-4o')
-        max_tokens = int(self.env['ir.config_parameter'].get_param('gpt_opd_max_tokens', default=300))
+        max_tokens = self.env['ir.config_parameter'].get_param('gpt_opd_max_tokens', default=300)
         image_url = image_data_uri(product.image_1920)
-
         content = [
             {
                 "type": "text",
-                "text": (
-                    f"Describe this product in {desc_tone} tone. "
-                    f"Name of the product is {product.name}. "
-                    f"The description should be in language with locale code {desc_lang} "
-                    f"and should be suitable for e-commerce. "
-                    f"Do not use lists and bullet points. "
-                    f"Do not style the text, except emoticons when those are suitable."
-                ),
+                "text": f"Describe this product in {desc_tone} tone. Name of the product is {product.name}. "
+                        f"The description should be in language with locale code {desc_lang} and should be "
+                        f"suitable for e-commerce. Do not use lists and bullet points. Do not style the text, "
+                        f"except emoticons when those are suitable and convenient for the use."
             },
             {
-                "type": "image_url",
-                "image_url": {"url": image_url},
+              "type": "image_url",
+              "image_url": {
+                "url": image_url,
+              },
             },
         ]
-
         client = OpenAI(api_key=api_key)
 
         try:
             response = client.chat.completions.create(
-                model=model,
-                messages=[{"role": "user", "content": content}],
-                max_tokens=max_tokens,
+                model = model,
+                messages = [{
+                    "role": "user",
+                    "content": content,
+                }],
+                max_tokens = max_tokens,
             )
         except APIError as e:
             _logger.error(f"OpenAI API Error: {str(e)}")
@@ -65,14 +64,15 @@ class ProductTemplate(models.Model):
             raise UserError(f"An unexpected error occurred: {str(e)}")
 
         product.write({'description_ecommerce': response.choices[0].message.content})
+
         return response.choices[0].message.content
 
     def button_update_description(self):
         desc_tone = self._context.get('desc_tone')
         if not desc_tone:
             raise UserError(_('Description tone is not set.'))
-
         lang = self.env.context.get('lang')
+
         for record in self:
             record.update_product_desc_ai(record.id, desc_tone, lang)
 
